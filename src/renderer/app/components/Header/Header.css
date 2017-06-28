@@ -1,0 +1,18 @@
+.header_component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: #1B1C1D;
+}
+
+.header_component h1.header {
+  color: #DCDDDE;
+  margin: 0;
+}
+
+.header_component i.icon {
+  color: #DCDDDE;
+  margin: 0;
+  cursor: pointer;
+}
