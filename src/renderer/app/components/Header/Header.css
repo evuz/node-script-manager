@@ -1,18 +1,26 @@
 .header_component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: #1B1C1D;
+  i {
+    &.icon {
+      color: #DCDDDE;
+      margin: 0;
+      cursor: pointer;
+      &.hide {
+        opacity: 0;
+      }
+    }
+  }
+  .header {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-    background-color: #1B1C1D;
-    i {
-        &.icon {
-            color: #DCDDDE;
-            margin: 0;
-            cursor: pointer;
-        }
+    flex-direction: column;
+    justify-content: center;
+    color: #DCDDDE;
+    .title, .subtitle{
+      margin: 0;
     }
-    h1.header {
-        color: #DCDDDE;
-        margin: 0;
-    }
+  }
 }
