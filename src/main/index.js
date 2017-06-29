@@ -1,10 +1,17 @@
-const { app, BrowserWindow } = require('electron');
+const {
+  app,
+  BrowserWindow,
+  globalShortcut
+} = require('electron');
+const {
+  getWorkingDirectory
+} = require('./handleScripts');
 
 let mainWindow;
 
-const winURL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:3000'
-  : `file://${__dirname}/index.html`;
+const winURL = process.env.NODE_ENV === 'development' ?
+  'http://localhost:3000' :
+  `file://${__dirname}/index.html`;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -23,7 +30,10 @@ function createWindow() {
   });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  getWorkingDirectory()
+    .then(createWindow)
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
