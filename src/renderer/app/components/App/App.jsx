@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { setPackageJson } from './reducer';
 
 import {
-  HeaderComponent
+  HeaderComponent,
+  TaskListComponent
 } from '../../components';
 
 import './App.css';
@@ -25,6 +26,11 @@ class AppComponent extends Component {
           name={packageJson.name}
           description={packageJson.description}
         />
+        <div className="container">
+          <TaskListComponent
+            tasks={packageJson.scripts || []}
+          />
+        </div>
       </div>
     );
   }
