@@ -1,0 +1,1 @@
+export const SET_PACKAGE_JSON = 'SET_PACKAGE_JSON';

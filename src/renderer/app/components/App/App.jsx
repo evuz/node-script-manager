@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { setPackageJson } from './reducer';
 
 import {
   HeaderComponent
@@ -6,10 +9,26 @@ import {
 
 import './App.css';
 
-const AppComponent = () => (
-  <div className="app_component">
-    <HeaderComponent></HeaderComponent>
-  </div>
-)
+class AppComponent extends Component {
+  componentWillMount() {
 
-export default AppComponent;
+  }
+
+  render() {
+    return (
+      <div className="app_component">
+        <HeaderComponent></HeaderComponent>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  packageJson: state.packageJson
+})
+
+const mapDispatchToProps = {
+  setPackageJson
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
