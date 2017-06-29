@@ -13,7 +13,7 @@ import './App.css';
 class AppComponent extends Component {
   componentWillMount() {
     ipcRenderer.on('setPackageJson', (event, data) => {
-      console.log(data);
+      this.props.setPackageJson(data);
     })
   }
 
@@ -27,7 +27,7 @@ class AppComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  packageJson: state.packageJson
+  packageJson: state.app.packageJson
 })
 
 const mapDispatchToProps = {
