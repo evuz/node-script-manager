@@ -1,3 +1,4 @@
+import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -11,7 +12,9 @@ import './App.css';
 
 class AppComponent extends Component {
   componentWillMount() {
-
+    ipcRenderer.on('setPackageJson', (event, data) => {
+      console.log(data);
+    })
   }
 
   render() {
