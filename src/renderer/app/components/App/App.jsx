@@ -18,9 +18,13 @@ class AppComponent extends Component {
   }
 
   render() {
+    const { packageJson } = this.props;
     return (
       <div className="app_component">
-        <HeaderComponent></HeaderComponent>
+        <HeaderComponent
+          name={packageJson.name}
+          description={packageJson.description}
+        />
       </div>
     );
   }
