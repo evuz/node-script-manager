@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import {
   SET_PACKAGE_JSON
 } from './actionTypes';
@@ -13,4 +14,6 @@ function packageJson(state = {}, action) {
   }
 }
 
-export default packageJson;
+export default combineReducers({
+  packageJson
+})
