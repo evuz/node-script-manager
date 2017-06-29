@@ -1,12 +1,18 @@
-const { app, BrowserWindow } = require('electron');
+const {
+  app,
+  BrowserWindow
+} = require('electron');
+const {
+  getWorkingDirectory
+} = require('./handleScripts');
 
 let mainWindow;
 
-const winURL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:3000'
-  : `file://${__dirname}/index.html`;
+const winURL = process.env.NODE_ENV === 'development' ?
+  'http://localhost:3000' :
+  `file://${__dirname}/index.html`;
 
-function createWindow() {
+function createWindow(packageJson) {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600
@@ -21,9 +27,16 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send('setPackageJson', packageJson);
+  })
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  getWorkingDirectory()
+    .then((packageJson) => createWindow(packageJson))
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

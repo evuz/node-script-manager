@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from 'redux';
-import packageJson from './components/App/reducer';
+import app from './components/App/reducer';
 
 function configureStore() {
   const appReducers = combineReducers({
-    packageJson
+    app
   });
 
   return createStore(appReducers);

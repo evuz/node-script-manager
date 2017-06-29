@@ -1,3 +1,4 @@
+import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -11,7 +12,9 @@ import './App.css';
 
 class AppComponent extends Component {
   componentWillMount() {
-
+    ipcRenderer.on('setPackageJson', (event, data) => {
+      this.props.setPackageJson(data);
+    })
   }
 
   render() {
@@ -24,7 +27,7 @@ class AppComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  packageJson: state.packageJson
+  packageJson: state.app.packageJson
 })
 
 const mapDispatchToProps = {
