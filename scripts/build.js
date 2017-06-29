@@ -113,8 +113,6 @@ function finishCompile({ stats, previousFileSizes, warnings }) {
 
 // Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
-  console.log('Creating an optimized production build...');
-
   let compiler = webpack(appConfig);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
