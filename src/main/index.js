@@ -1,7 +1,6 @@
 const {
   app,
-  BrowserWindow,
-  globalShortcut
+  BrowserWindow
 } = require('electron');
 const {
   getWorkingDirectory
@@ -13,7 +12,7 @@ const winURL = process.env.NODE_ENV === 'development' ?
   'http://localhost:3000' :
   `file://${__dirname}/index.html`;
 
-function createWindow() {
+function createWindow(packageJson) {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600
@@ -28,11 +27,15 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send('setPackageJson', packageJson);
+  })
 }
 
 app.on('ready', () => {
   getWorkingDirectory()
-    .then(createWindow)
+    .then((packageJson) => createWindow(packageJson))
 });
 
 app.on('window-all-closed', () => {

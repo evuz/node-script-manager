@@ -20,8 +20,7 @@ function readPackageJson(directory) {
       fs.readFile(packageJsonPath, 'utf-8', (err, data) => {
         if (err) throw err;
         packageJson = new PackageJsonModel(JSON.parse(data));
-        console.log(packageJson);
-        resolve();
+        resolve(packageJson);
       })
     } else {
       const options = {
@@ -46,13 +45,13 @@ function getWorkingDirectory() {
   return new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'development') {
       readPackageJson(path.join(path.resolve(__dirname), '..', '..'))
-        .then(() => resolve());
+        .then(() => resolve(packageJson));
     } else {
       selectFolder()
         .then(directory => {
           if (!directory) return app.quit();
           readPackageJson(directory[0])
-            .then(() => resolve());
+            .then(() => resolve(packageJson));
         });
     }
   })
