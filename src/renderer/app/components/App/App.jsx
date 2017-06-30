@@ -2,7 +2,10 @@ import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setPackageJson } from './reducer';
+import {
+  setPackageJson,
+  changeScript
+ } from './reducer';
 
 import {
   HeaderComponent,
@@ -12,10 +15,19 @@ import {
 import './App.css';
 
 class AppComponent extends Component {
+  constructor() {
+    super();
+    this.onChangeScript = this.onChangeScript.bind(this);
+  }
+
   componentWillMount() {
     ipcRenderer.on('setPackageJson', (event, data) => {
       this.props.setPackageJson(data);
     })
+  }
+
+  onChangeScript(newScript) {
+    this.props.changeScript(newScript);
   }
 
   render() {
@@ -29,6 +41,7 @@ class AppComponent extends Component {
         <div className="container">
           <TaskListComponent
             tasks={packageJson.scripts || []}
+            onChangeTask={this.onChangeScript}
           />
         </div>
       </div>
@@ -41,7 +54,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  setPackageJson
+  setPackageJson,
+  changeScript
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);

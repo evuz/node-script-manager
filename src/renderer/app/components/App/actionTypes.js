@@ -1,1 +1,2 @@
 export const SET_PACKAGE_JSON = 'SET_PACKAGE_JSON';
+export const CHANGE_SCRIPT = 'CHANGE_SCRIPT';
