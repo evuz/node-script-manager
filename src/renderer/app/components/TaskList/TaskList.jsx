@@ -1,13 +1,16 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react'
+
+import { TaskItemComponent } from '../../components';
 
 import './TaskList.css';
 
 const TaskListComponent = (props) => {
   const tasksItem = props.tasks.map((task, index) => (
-    <Card key={index} fluid>
-      <Card.Content header={task.key} meta={task.command} />
-    </Card>
+    <TaskItemComponent
+      task={task}
+      key={index}
+      onChangeTask={props.onChangeTask}
+    />
   ));
   return (
     <div className="task_list_component">
