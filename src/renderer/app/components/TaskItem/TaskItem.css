@@ -1,0 +1,11 @@
+.task_item_component {
+  &.card {
+    .content {
+      .card_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
