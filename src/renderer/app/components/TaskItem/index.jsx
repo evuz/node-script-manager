@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Icon } from 'semantic-ui-react'
 
-import './TaskItem.css';
+import './index.css';
 
 class TaskItemComponent extends Component {
   constructor() {
