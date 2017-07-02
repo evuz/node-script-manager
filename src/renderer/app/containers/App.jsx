@@ -8,9 +8,10 @@ import {
  } from '../reducers/app';
 
 import {
-  HeaderComponent,
   TaskListComponent
 } from '../components';
+
+import HeaderContainer from './Header';
 
 class AppComponent extends Component {
   constructor() {
@@ -32,10 +33,7 @@ class AppComponent extends Component {
     const { packageJson } = this.props;
     return (
       <div className="app_component">
-        <HeaderComponent
-          name={packageJson.name}
-          description={packageJson.description}
-        />
+        <HeaderContainer />
         <div className="container">
           <TaskListComponent
             tasks={packageJson.scripts || []}
