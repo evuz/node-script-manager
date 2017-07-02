@@ -5,14 +5,12 @@ import { connect } from 'react-redux';
 import {
   setPackageJson,
   changeScript
- } from './reducer';
+ } from '../reducers/app';
 
 import {
   HeaderComponent,
   TaskListComponent
-} from '../../components';
-
-import './App.css';
+} from '../components';
 
 class AppComponent extends Component {
   constructor() {
