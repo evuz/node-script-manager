@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TaskItemComponent } from '../../components';
 
-import './TaskList.css';
+import './index.css';
 
 const TaskListComponent = (props) => {
   const tasksItem = props.tasks.map((task, index) => (
