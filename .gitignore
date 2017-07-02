@@ -20,3 +20,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# node-pty
+.cache
+.config
+.electron-gyp
+.pki
+.bash_history
