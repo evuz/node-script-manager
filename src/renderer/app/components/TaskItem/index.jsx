@@ -1,46 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react';
 import { Card, Icon } from 'semantic-ui-react'
 
 import './index.css';
 
-class TaskItemComponent extends Component {
-  constructor() {
-    super();
-
-    this.handleRun = this.handleRun.bind(this);
-  }
-
-  handleRun() {
-    const { task } = this.props;
-    const run = !this.props.task.run;
-    const newTask = Object.assign({}, task, { run });
-    this.props.onChangeTask(newTask);
-  }
-
-  render() {
-    const { task } = this.props;
-    return (
-      <Card fluid className="task_item_component">
-        <Card.Content>
-          <div className="card_container">
-            <div className="card_info">
-              <div className="name">
-                {task.key}
-              </div>
-              <div className="command">
-                {task.command}
-              </div>
-            </div>
-            <Icon
-              name={task.run ? 'stop' : 'play'}
-              link
-              onClick={this.handleRun}
-            />
+const TaskItemComponent = (props) => (
+  <Card fluid className="task_item_component">
+    <Card.Content>
+      <div className="card_container">
+        <div className="card_info">
+          <div className="name">
+            {props.task.key}
           </div>
-        </Card.Content>
-      </Card>
-    );
-  }
-}
+          <div className="command">
+            {props.task.command}
+          </div>
+        </div>
+        <Icon
+          name={props.task.run ? 'stop' : 'play'}
+          link
+          onClick={() => props.onTaskRun(props.task)}
+        />
+      </div>
+    </Card.Content>
+  </Card>
+);
 
 export default TaskItemComponent;
