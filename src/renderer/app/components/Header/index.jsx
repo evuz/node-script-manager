@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import './Header.css';
+import './index.css';
 
 const HeaderComponent = (props) => (
   <div className="header_component">
