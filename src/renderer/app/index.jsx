@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { AppComponent } from './components';
+import AppContainer from './containers/App';
 
 import './index.css';
 
 const App = () => (
-  <AppComponent></AppComponent>
+  <AppContainer></AppContainer>
 );
 
 export default App;
