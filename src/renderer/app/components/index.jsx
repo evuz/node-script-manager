@@ -1,6 +1,6 @@
-import HeaderComponent from './Header/Header';
-import TaskListComponent from './TaskList/TaskList';
-import TaskItemComponent from './TaskItem/TaskItem';
+import HeaderComponent from './Header';
+import TaskListComponent from './TaskList';
+import TaskItemComponent from './TaskItem';
 
 export {
   HeaderComponent,
