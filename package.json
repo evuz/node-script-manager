@@ -8,6 +8,7 @@
     "email": "jesusjgb45@gmail.com"
   },
   "dependencies": {
+    "node-pty": "^0.6.8",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
