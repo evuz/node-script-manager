@@ -45,7 +45,7 @@ module.exports = {
   mainBuild: resolveApp('build/main'),
   appPublic: resolveApp('src/renderer/public'),
   appHtml: resolveApp('src/renderer/public/index.html'),
-  appIndexJs: resolveApp('src/renderer/index.jsx'),
+  appIndexJs: resolveApp('src/renderer/index.js'),
   mainIndexJs: resolveApp('src/main/index.js'),
   mainDevIndexJs: resolveApp('src/main/index.dev.js'),
   mainIndexJsBuild: resolveApp('build/main/index.js'),
