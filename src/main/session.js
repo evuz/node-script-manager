@@ -3,6 +3,16 @@ const pty = require('node-pty');
 
 const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 
+const taskRunning = {};
+
+function runSession({ key, command, run }) {
+  if (run) {
+    taskRunning[key] = Session(key, command);
+  } else {
+    taskRunning[key].close();
+  }
+}
+
 function Session(key, command) {
   const ptyProcess = pty.spawn(shell, [], {
     name: 'xterm-color',
@@ -19,7 +29,7 @@ function Session(key, command) {
   ptyProcess.write(`${command}\r`);
 
   return {
-    key,
+    pid: ptyProcess.pid,
     close() {
       console.log('close');
       ptyProcess.destroy();
@@ -28,5 +38,5 @@ function Session(key, command) {
 }
 
 module.exports = {
-  Session
+  runSession
 };
