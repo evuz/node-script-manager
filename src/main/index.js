@@ -1,10 +1,10 @@
 const {
   app,
   BrowserWindow,
-  ipcMain
+  // ipcMain
 } = require('electron');
 const { getWorkingDirectory } = require('./handleScripts');
-const { runSession } = require('./session');
+// const { runSession } = require('./session');
 
 let mainWindow;
 
@@ -50,6 +50,6 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on('run-script', (event, task) => {
-  runSession(mainWindow, task);
-})
+// ipcMain.on('run-script', (event, task) => {
+//   runSession(mainWindow, task);
+// })
