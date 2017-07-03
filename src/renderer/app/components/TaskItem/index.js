@@ -23,6 +23,12 @@ const TaskItemComponent = (props) => (
         />
       </div>
     </Card.Content>
+    {
+      props.task.output ?
+      <Card.Content
+        description={props.task.output}
+      /> : null
+    }
   </Card>
 );
 
