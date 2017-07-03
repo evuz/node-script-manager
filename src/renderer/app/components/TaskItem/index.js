@@ -9,7 +9,7 @@ const TaskItemComponent = (props) => (
       <div className="card_container">
         <div className="card_info">
           <div className="name">
-            {props.task.key}
+            <h3>{props.task.key}</h3>
           </div>
           <div className="command">
             {props.task.command}
@@ -17,8 +17,9 @@ const TaskItemComponent = (props) => (
         </div>
         <Icon
           name={props.task.run ? 'stop' : 'play'}
-          link
+          color={props.task.run ? 'red' : 'green'}
           onClick={() => props.onTaskRun(props.task)}
+          link
         />
       </div>
     </Card.Content>

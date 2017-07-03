@@ -5,6 +5,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .card_info {
+          flex: 1;
+          .command {
+            color: rgba(0,0,0,.4);
+          }
+        }
       }
     }
   }
