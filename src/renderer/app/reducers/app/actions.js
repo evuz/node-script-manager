@@ -1,6 +1,7 @@
 import {
   SET_PACKAGE_JSON,
-  CHANGE_SCRIPT
+  CHANGE_SCRIPT,
+  ADD_OUTPUT_SCRIPT
 } from './actionTypes';
 
 export function setPackageJson(packageJson) {
@@ -17,6 +18,16 @@ export function changeScript(newScript) {
     type: CHANGE_SCRIPT,
     payload: {
       newScript
+    }
+  }
+}
+
+export function addOutput(key, data) {
+  return {
+    type: ADD_OUTPUT_SCRIPT,
+    payload: {
+      key,
+      data
     }
   }
 }
