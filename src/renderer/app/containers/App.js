@@ -5,12 +5,17 @@ import { connect } from 'react-redux';
 import HeaderContainer from './Header';
 import TaskListContainer from './TaskList';
 
-import { setPackageJson } from '../reducers/app';
+import { setPackageJson, addOutput } from '../reducers/app';
 
 class AppComponent extends Component {
   componentWillMount() {
     ipcRenderer.on('setPackageJson', (event, data) => {
       this.props.setPackageJson(data);
+    })
+
+    ipcRenderer.on('data', (event, {key, data}) => {
+      this.props.addOutput(key, data);
+      console.log(data);
     })
   }
 
@@ -27,7 +32,8 @@ class AppComponent extends Component {
 }
 
 const mapDispatchToProps = {
-  setPackageJson
+  setPackageJson,
+  addOutput
 }
 
 export default connect(null, mapDispatchToProps)(AppComponent);
