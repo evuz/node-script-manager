@@ -51,5 +51,5 @@ app.on('activate', () => {
 });
 
 ipcMain.on('run-script', (event, task) => {
-  runSession(task);
+  runSession(mainWindow, task);
 })

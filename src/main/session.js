@@ -1,19 +1,22 @@
 const os = require('os');
 const pty = require('node-pty');
 
+const AU = require('ansi_up');
+
 const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 
 const taskRunning = {};
 
-function runSession({ key, command, run }) {
+function runSession(mainWindow, { key, command, run }) {
   if (run) {
-    taskRunning[key] = Session(key, command);
+    taskRunning[key] = Session(mainWindow, key, command);
   } else {
     taskRunning[key].close();
   }
 }
 
-function Session(key, command) {
+function Session(mainWindow, key, command) {
+  const ansiUp = new AU.default;
   const ptyProcess = pty.spawn(shell, [], {
     name: 'xterm-color',
     cols: 80,
@@ -24,6 +27,10 @@ function Session(key, command) {
 
   ptyProcess.on('data', function (data) {
     console.log('data: ', data);
+    mainWindow.webContents.send('data', {
+      key,
+      data: ansiUp.ansi_to_text(data)
+    });
   });
 
   ptyProcess.write(`${command}\r`);
