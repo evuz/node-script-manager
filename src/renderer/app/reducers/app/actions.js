@@ -13,6 +13,16 @@ export function setPackageJson(packageJson) {
   }
 }
 
+export function runScript(script) {
+  return (dispatch) => {
+    const run = !script.run;
+    const newScript = Object.assign({}, script, {
+      run
+    });
+    dispatch(changeScript(newScript))
+  }
+}
+
 export function changeScript(newScript) {
   return {
     type: CHANGE_SCRIPT,
