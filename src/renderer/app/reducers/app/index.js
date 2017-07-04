@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import {
   SET_PACKAGE_JSON,
   CHANGE_SCRIPT,
-  ADD_OUTPUT_SCRIPT
+  ADD_OUTPUT_SCRIPT,
+  REMOVE_OUTPUT_SCRIPT
 } from './actionTypes';
 
 export * from './actions';
@@ -14,11 +15,15 @@ function changeScript(scripts, newScript) {
   })
 }
 
-function addOutput(scripts, key, data) {
+function setOutput(scripts, key, data, add) {
   return scripts.map(script => {
     if (script.key === key) {
-      let { output = '' } = script;
-      output += data;
+      let { output = [] } = script;
+      if (add) {
+        output.push(data);
+      } else {
+        output = data;
+      }
       return Object.assign({}, script, { output });
     }
     return script
@@ -35,7 +40,11 @@ function packageJson(state = {}, action) {
       });
     case ADD_OUTPUT_SCRIPT:
       return Object.assign({}, state, {
-        scripts: addOutput(state.scripts, action.payload.key, action.payload.data)
+        scripts: setOutput(state.scripts, action.payload.key, `\n${action.payload.data}`, true)
+      });
+    case REMOVE_OUTPUT_SCRIPT:
+      return Object.assign({}, state, {
+        scripts: setOutput(state.scripts, action.payload.key, undefined, false)
       });
     default:
       return state;

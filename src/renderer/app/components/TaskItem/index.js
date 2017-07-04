@@ -1,4 +1,5 @@
 import React from 'react';
+import Ansi from 'ansi-to-react';
 import { Card, Icon } from 'semantic-ui-react'
 
 import './index.css';
@@ -25,9 +26,19 @@ const TaskItemComponent = (props) => (
     </Card.Content>
     {
       props.task.output ?
-      <Card.Content
-        description={props.task.output}
-      /> : null
+        <Card.Content>
+          <Card.Description>
+            {
+              props.task.output.map((line, index) => (
+                <p key={index}>
+                  <Ansi>
+                    {line}
+                  </Ansi>
+                </p>
+              ))
+            }
+          </Card.Description>
+        </Card.Content> : null
     }
   </Card>
 );
