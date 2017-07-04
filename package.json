@@ -8,6 +8,7 @@
     "email": "jesusjgb45@gmail.com"
   },
   "dependencies": {
+    "ansi-to-react": "^1.4.2",
     "ansi_up": "^2.0.2",
     "node-pty": "^0.6.8",
     "react": "^15.6.1",

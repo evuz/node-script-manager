@@ -18,8 +18,12 @@ function changeScript(scripts, newScript) {
 function setOutput(scripts, key, data, add) {
   return scripts.map(script => {
     if (script.key === key) {
-      let { output = '' } = script;
-      output = add ? output + data : data;
+      let { output = [] } = script;
+      if (add) {
+        output.push(data);
+      } else {
+        output = data;
+      }
       return Object.assign({}, script, { output });
     }
     return script
@@ -36,7 +40,7 @@ function packageJson(state = {}, action) {
       });
     case ADD_OUTPUT_SCRIPT:
       return Object.assign({}, state, {
-        scripts: setOutput(state.scripts, action.payload.key, action.payload.data, true)
+        scripts: setOutput(state.scripts, action.payload.key, `\n${action.payload.data}`, true)
       });
     case REMOVE_OUTPUT_SCRIPT:
       return Object.assign({}, state, {
