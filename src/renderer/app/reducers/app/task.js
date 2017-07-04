@@ -5,7 +5,7 @@ export function runTask(command, stdout) {
     stderr: stdout,
     stdout: stdout
   }, (code) => {
-    console.log('code');
+    console.log(code);
   })
 }
 
